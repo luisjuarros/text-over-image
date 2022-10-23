@@ -79,6 +79,8 @@ const Page = () => {
                     width: "200px",
                     margin: "1rem",
                     textAlign: "center",
+
+                    position: "relative",
                   }}
                 >
                   {/* <img
@@ -94,8 +96,8 @@ const Page = () => {
                       background: `url(${element.urls.regular})`,
                       backgroundPosition: "center",
                       backgroundSize: "cover",
-                      lineHeight: "2.5",
-                      paddingTop: "2%",
+                      lineHeight: "1.2",
+                      padding: "3%",
                       width: "200px",
                       height: "200px",
                     }}
@@ -104,12 +106,29 @@ const Page = () => {
                       style={{
                         backgroundColor: "rgba(255, 0, 0, 1)",
                         color: "#fff",
-                        display: "inline",
+                        display: "block",
                         padding: "0.5rem",
                         fontFamily: "'Fuzzy Bubbles', cursive",
-                        fontSize:"0.9rem"                      }}
+                        fontSize: "0.9rem",
+                      }}
                     >
                       {data.fields.question}
+                    </span>
+
+                    <span
+                      style={{
+                        backgroundColor: "rgba(255, 0, 0, 0)",
+                        color: "#fff",
+                        position: "absolute",
+                        bottom: "0",
+                        right:"0.5rem",
+                        padding: "0.5rem",
+                        fontFamily: "'Fuzzy Bubbles', cursive",
+                        fontSize: "0.9rem",
+                        marginBottom: "0",
+                      }}
+                    >
+                      ➡️
                     </span>
                   </p>{" "}
                 </div>
