@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Page.css";
+import exportAsImage from "./utils/exportAsImage";
+
 var Airtable = require("airtable");
 
 const Page = () => {
+  const exportRef = useRef();
+
   const { slug } = useParams();
   console.log(slug);
   const [data, setData] = useState();
@@ -68,22 +72,26 @@ const Page = () => {
 </div> */}
 
       {unsplash && (
-        <div className="row">
-          {unsplash &&
-            unsplash.results.map((element) => {
-              return (
-                <div
-                  className="col"
-                  style={{
-                    height: "200px",
-                    width: "200px",
-                    margin: "1rem",
-                    textAlign: "center",
+        <>
+          <button onClick={() => exportAsImage(exportRef.current, "test")}>
+            Capture Image
+          </button>
+          <div className="row" ref={exportRef}>
+            {unsplash &&
+              unsplash.results.map((element) => {
+                return (
+                  <div
+                    className="col"
+                    style={{
+                      height: "200px",
+                      width: "200px",
+                      margin: "1rem",
+                      textAlign: "center",
 
-                    position: "relative",
-                  }}
-                >
-                  {/* <img
+                      position: "relative",
+                    }}
+                  >
+                    {/* <img
                     style={{
                       objectFit: "cover",
                       width: "200px",
@@ -91,50 +99,51 @@ const Page = () => {
                     }}
                     src={element.urls.regular}
                   /> */}
-                  <p
-                    style={{
-                      background: `url(${element.urls.regular})`,
-                      backgroundPosition: "center",
-                      backgroundSize: "cover",
-                      lineHeight: "1.2",
-                      padding: "3%",
-                      width: "200px",
-                      height: "200px",
-                    }}
-                  >
-                    <span
+                    <p
                       style={{
-                        backgroundColor: "rgba(255, 0, 0, 1)",
-                        color: "#fff",
-                        display: "block",
-                        padding: "0.5rem",
-                        fontFamily: "'Fuzzy Bubbles', cursive",
-                        fontSize: "0.9rem",
+                        background: `url(${element.urls.regular})`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        lineHeight: "1.2",
+                        padding: "3%",
+                        width: "200px",
+                        height: "200px",
                       }}
                     >
-                      {data.fields.question}
-                    </span>
+                      <span
+                        style={{
+                          backgroundColor: "rgba(255, 0, 0, 1)",
+                          color: "#fff",
+                          display: "block",
+                          padding: "0.5rem",
+                          fontFamily: "'Fuzzy Bubbles', cursive",
+                          fontSize: "0.9rem",
+                        }}
+                      >
+                        {data.fields.question}
+                      </span>
 
-                    <span
-                      style={{
-                        backgroundColor: "rgba(255, 0, 0, 0)",
-                        color: "#fff",
-                        position: "absolute",
-                        bottom: "0",
-                        right:"0.5rem",
-                        padding: "0.5rem",
-                        fontFamily: "'Fuzzy Bubbles', cursive",
-                        fontSize: "0.9rem",
-                        marginBottom: "0",
-                      }}
-                    >
-                      ➡️
-                    </span>
-                  </p>{" "}
-                </div>
-              );
-            })}
-        </div>
+                      <span
+                        style={{
+                          backgroundColor: "rgba(255, 0, 0, 0)",
+                          color: "#fff",
+                          position: "absolute",
+                          bottom: "0",
+                          right: "0.5rem",
+                          padding: "0.5rem",
+                          fontFamily: "'Fuzzy Bubbles', cursive",
+                          fontSize: "0.9rem",
+                          marginBottom: "0",
+                        }}
+                      >
+                        ➡️
+                      </span>
+                    </p>{" "}
+                  </div>
+                );
+              })}
+          </div>
+        </>
       )}
     </div>
   );
