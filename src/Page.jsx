@@ -23,7 +23,7 @@ const Page = () => {
       console.log("Retrieved", record.id);
       setData(record);
 
-      const response = axios
+      axios
         .get(
           `https://api.unsplash.com/search/photos?per_page=20&query=${record.fields.keyword}`,
           {
