@@ -51,7 +51,7 @@ const Page = () => {
       //     console.log(res.json().results);
       //   });
     });
-  }, []);
+  }, [base, slug]);
   return (
     <div className="container font">
       {data && (
